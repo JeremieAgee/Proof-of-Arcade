@@ -16,7 +16,7 @@ version = "0.1.0"
 edition = "2024"
 authors = ["Jeremie Agee <jeremieagee@gmail.com>"]
 license = "MIT"
-repository = "https://github.com/AgeeGaming/Proof-Of-Arcade"
+repository = "https://github.com/Proof-Of-Arcade"
 
 [profile.release]
 opt-level = 3
