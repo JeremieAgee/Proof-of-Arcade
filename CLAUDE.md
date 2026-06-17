@@ -87,20 +87,22 @@ CoinGrant {
 
 ## Development Path
 
-**Stage 1: Local Arcade Wallet** ← Next
-- Persistent `PlayerProfile` with wallet balances
-- Non-mintable maze pickups by default
-- No ads, no paid entry
-
-**Stage 2: Ledger**
-- `CoinGrant` history for every balance change
-- Ledger queries
+**Stage 1-2: Foundation** ✅
+- Persistent `PlayerProfile` wallet with `Balance` (private fields)
+- `CoinGrant` ledger (every coin has source/status)
+- Atomic `execute_claim_floor_reward()` (only gate for minting)
+- `ClaimKey` for duplicate prevention
+- `ValidatorAttestation` for replay-safe signatures
 
 **Stage 3: Floor Receipts**
 - `FloorResult` object from each floor
 
-**Stage 4: Local Floor Validator**
-- Maze Runner validator: regenerates maze, checks collisions, verifies coins/traps/time
+**Stage 4: Maze Runner Validator** ✅
+- Deterministic PRNG (SplitMix64V1)
+- `GeneratedMazeFloor`: walls, traps, coins, floor_hash
+- Reward: coin_value + floor_depth_bonus (no score)
+- `FloorValidationResult` with strict error enum
+- Tests: determinism, claim execution, attestation
 
 **Stage 5: Rust Chain v0**
 - `ChainState`: balances, supply, claimed floors
