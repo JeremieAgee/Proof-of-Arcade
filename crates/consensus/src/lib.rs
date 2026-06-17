@@ -6,5 +6,5 @@ pub mod attestation;
 #[cfg(test)]
 mod attestation_tests;
 
-pub use validator_set::ValidatorSet;
+pub use validator_set::{ValidatorSet, ValidatorInfo};
 pub use attestation::{ValidatorAttestation, ValidatorSignature};

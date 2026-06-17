@@ -1,4 +1,5 @@
 use agee_block::Block;
+use agee_consensus::ValidatorSet;
 use agee_ledger::{Balances, SupplyTracker};
 use agee_primitives::ClaimKey;
 use serde::{Deserialize, Serialize};
@@ -10,6 +11,7 @@ pub struct ChainState {
     pub balances: Balances,
     pub supply: SupplyTracker,
     pub claimed_floors: std::collections::HashSet<[u8; 32]>,
+    pub validators: ValidatorSet,
 }
 
 impl ChainState {
@@ -20,6 +22,7 @@ impl ChainState {
             balances: Balances::new(),
             supply: SupplyTracker::new(),
             claimed_floors: std::collections::HashSet::new(),
+            validators: ValidatorSet::new(1), // Default threshold 1 for v0
         }
     }
 

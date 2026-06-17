@@ -5,5 +5,5 @@ pub mod burn;
 pub mod error;
 
 pub use transaction::Transaction;
-pub use claim_floor::ClaimFloorReward;
+pub use claim_floor::{ClaimFloorReward, SignedValidatorAttestation};
 pub use error::TxError;
