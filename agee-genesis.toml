@@ -1,0 +1,14 @@
+[validator_set]
+threshold = 2
+
+[[validator_set.validators]]
+validator_id = "validator-1"
+public_key = "d46a6b9a6e4f5f1c8e3d9a5b7c2e4f1a9d8c7b6a5e4d3c2b1a9f8e7d6c5b4a"
+
+[[validator_set.validators]]
+validator_id = "validator-2"
+public_key = "e9f8e7d6c5b4a3f2e1d0c9b8a7f6e5d4c3b2a1f0e9d8c7b6a5f4e3d2c1b0a"
+
+[[validator_set.validators]]
+validator_id = "validator-3"
+public_key = "f7e6d5c4b3a2f1e0d9c8b7a6f5e4d3c2b1a0f9e8d7c6b5a4f3e2d1c0b9a8"

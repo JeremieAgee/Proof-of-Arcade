@@ -23,6 +23,9 @@ enum Commands {
 
         #[arg(long, default_value = "./data")]
         data_dir: String,
+
+        #[arg(long, default_value = "agee-genesis.toml")]
+        genesis_config: String,
     },
     /// Print version info
     Version,
@@ -39,8 +42,9 @@ async fn main() {
             listen_addr,
             listen_port,
             data_dir,
+            genesis_config,
         } => {
-            run_node(listen_addr, listen_port, data_dir).await;
+            run_node(listen_addr, listen_port, data_dir, genesis_config).await;
         }
         Commands::Version => {
             println!("Agee Chain v0.1.0");
@@ -49,13 +53,21 @@ async fn main() {
     }
 }
 
-async fn run_node(listen_addr: String, listen_port: u16, data_dir: String) {
-    let config = NodeConfig {
-        chain_id: [0u8; 32],
-        listen_addr: listen_addr.clone(),
-        listen_port,
-        data_dir,
+async fn run_node(listen_addr: String, listen_port: u16, data_dir: String, genesis_config: String) {
+    let mut config = match NodeConfig::from_toml_file(&genesis_config) {
+        Ok(cfg) => {
+            tracing::info!("Loaded genesis config from {}", genesis_config);
+            cfg
+        }
+        Err(e) => {
+            tracing::warn!("Failed to load genesis config: {}. Using defaults.", e);
+            NodeConfig::default()
+        }
     };
+
+    config.listen_addr = listen_addr.clone();
+    config.listen_port = listen_port;
+    config.data_dir = data_dir;
 
     let runtime = Arc::new(NodeRuntime::new(config));
     let router = create_router(runtime.clone());
