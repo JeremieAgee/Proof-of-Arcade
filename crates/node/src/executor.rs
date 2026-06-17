@@ -42,12 +42,11 @@ pub fn execute_claim_floor_reward(
     }
 
     // 5. Atomic mutations (all succeed or all fail)
-    let claim_key_hash = claim_key.to_hash();
     state.mark_floor_claimed(claim_key);
 
     // Mint to player balance
     let player_balance = state.balances.get_or_create(tx.player);
-    player_balance.mintable_coins = player_balance.mintable_coins.saturating_add(tx.claimed_amount);
+    player_balance.grant_mintable(tx.claimed_amount);
 
     // Increase circulating supply
     state.supply.mint(tx.claimed_amount);

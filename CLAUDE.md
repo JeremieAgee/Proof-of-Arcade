@@ -1,5 +1,25 @@
 # Agee Arcade Coin / Proof-of-Arcade
 
+## 🔒 THE CORE INVARIANT
+
+**No AGEE can enter circulation except through `execute_claim_floor_reward()`.**
+
+Do not:
+```rust
+balance += amount;    // ❌ NO
+supply += amount;     // ❌ NO
+mint(account, amount);  // ❌ NO
+```
+
+Do only:
+```rust
+execute_claim_floor_reward(state, tx)  // ✅ THE GATE
+```
+
+This invariant **is** the coin. If there's a backdoor to minting, the economy breaks immediately. No presales, no inflation, no shortcuts.
+
+---
+
 ## Project Vision
 
 Agee Coin is mined through verified arcade gameplay, not presales or paid entry. Players complete floors, collect coins, survive hazards—validator nodes verify proofs, and the Rust chain mints coins only if validators approve.
