@@ -5,6 +5,7 @@ pub mod executor;
 pub mod verified_claim;
 pub mod attestation_verifier;
 pub mod runtime;
+pub mod persistence;
 
 #[cfg(test)]
 mod executor_tests;
