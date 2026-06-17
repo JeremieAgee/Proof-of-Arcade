@@ -1,0 +1,12 @@
+[package]
+name = "agee-floor-proof"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+agee-primitives = { path = "../primitives" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"

@@ -1,0 +1,13 @@
+[package]
+name = "agee-block"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+agee-primitives = { path = "../primitives" }
+agee-tx = { path = "../tx" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
